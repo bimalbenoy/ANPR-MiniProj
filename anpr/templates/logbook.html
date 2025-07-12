@@ -1,0 +1,58 @@
+{% extends 'layout1.html' %}
+{% load static %}
+
+{% block title %}Logbook - Vehicle History{% endblock %}
+
+{% block content %}
+  <header>
+    <div class="header-container text-center py-4">
+      <h1>Logbook</h1>
+      <p>Access the history of detected vehicles.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="container mt-4">
+      <h2 class="text-center text-primary">Vehicle Detection History</h2>
+      <div class="table-responsive mt-4">
+        <table class="table table-dark table-hover text-center">
+          <thead>
+            <tr>
+              <th>Owner Name</th>
+              <th>Vehicle Number</th>
+              <th>Detection Date</th>
+              <th>Detection Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Sample Data (Replace with Django dynamic data later) -->
+            {% for i in vehicles %}
+            <tr>
+              <td>{{i.owner_name}}</td>
+              <td>{{i.vehicle_number}}</td>
+              <td>{{i.registered_date}}</td>
+              <td>{{i.registered_time}}</td>
+              <td>
+                {% if i.category == "Resident" %}
+                    <span class="badge bg-success text-dark">{{ i.category }}</span>
+                {% elif i.category == "Visitor" %}
+                    <span class="badge bg-warning text-dark">{{ i.category }}</span>
+                {% elif i.category == "Criminal" %}
+                    <span class="badge bg-danger text-light">{{ i.category }}</span>
+                {% else %}
+                    <span class="badge bg-secondary">{{ i.category }}</span>  <!-- Default case -->
+                {% endif %}
+            </td>
+              
+              
+              
+            </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+{% endblock %}

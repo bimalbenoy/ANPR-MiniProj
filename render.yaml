@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: anpr-app
+    env: python
+    plan: free
+
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+
+    startCommand: gunicorn anpr_project.wsgi:application --bind 0.0.0.0:$PORT
+
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: anpr_project.settings
+      - key: PYTHON_VERSION
+        value: 3.9
+      - key: RENDER
+        value: true

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxurious Gate Animation</title>
+    <link rel="stylesheet" href="{% static 'tweet/stylegateopen.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styling for the approved container */
+        .approved-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+            color: #4CAF50;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+            display: none;
+        }
+        
+        .approved-container i {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+        
+        .approved-container p {
+            margin: 5px 0;
+        }
+        
+        .vehicle-number {
+            font-size: 1.5rem;
+            color: #FFD700; /* Gold color for the number plate */
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 15px;
+            border-radius: 5px;
+            margin-top: 15px !important;
+        }
+        
+        .visitor-name {
+            font-size: 1.8rem;
+            color: #FFFFFF;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Gate Container -->
+    <div class="gate">
+        <div class="gate-panel left">
+            <div class="gate-details">
+                <div class="ornament"></div>
+                <div class="handle"></div>
+            </div>
+        </div>
+        <div class="gate-panel right">
+            <div class="gate-details">
+                <div class="ornament"></div>
+                <div class="handle"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Approved Message Container -->
+    <div class="approved-container">
+        <i class="fas fa-check-circle"></i>
+        <p>Approved</p>
+        <p class="visitor-name">{{ name|default:"Welcome" }}</p> <!-- Visitor name added here -->
+        <p class="vehicle-number">{{ No|default:"No License Plate Found" }}</p> <!-- Vehicle number added here -->
+    </div>
+
+    <script src="{% static 'tweet/gateopen.js' %}" defer></script>
+    
+    <script>
+        // Show the approved message when the gate animation starts
+        document.addEventListener('DOMContentLoaded', function() {
+            const gatePanels = document.querySelectorAll('.gate-panel');
+            const approvedContainer = document.querySelector('.approved-container');
+            
+            gatePanels.forEach(panel => {
+                panel.addEventListener('animationstart', function() {
+                    setTimeout(() => {
+                        approvedContainer.style.display = 'block';
+                    }, 500); // Show after a short delay
+                });
+            });
+        });
+    </script>
+</body>
+</html>
