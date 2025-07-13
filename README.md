@@ -16,6 +16,7 @@ This project implements an *Automatic Number Plate Recognition (ANPR)* system us
 
 ## 🗂 Project Structure
 
+anpr-project/
 ├── basic/ # Django app: handles detection and logic
 ├── home/ # Django app: likely homepage/views
 ├── media/ # Folder for uploaded media files
@@ -30,7 +31,7 @@ This project implements an *Automatic Number Plate Recognition (ANPR)* system us
 │ ├── layout.html
 │ └── layout1.html
 ├── uploads/ # Image/video uploads for detection
-├── db.sqlite3 # Database
+├── db.sqlite3 # SQLite database
 ├── manage.py # Django project runner
 └── requirements.txt # Python dependencies
 
